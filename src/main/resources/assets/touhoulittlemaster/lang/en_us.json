@@ -1,0 +1,13 @@
+{
+  "itemGroup.touhoulittlemaster": "Example Mod Tab",
+  "block.touhoulittlemaster.example_block": "Example Block",
+  "item.touhoulittlemaster.example_item": "Example Item",
+
+  "touhoulittlemaster.configuration.title": "Touhou Little Master Configs",
+  "touhoulittlemaster.configuration.section.touhoulittlemaster.common.toml": "Touhou Little Master Configs",
+  "touhoulittlemaster.configuration.section.touhoulittlemaster.common.toml.title": "Touhou Little Master Configs",
+  "touhoulittlemaster.configuration.items": "Item List",
+  "touhoulittlemaster.configuration.logDirtBlock": "Log Dirt Block",
+  "touhoulittlemaster.configuration.magicNumberIntroduction": "Magic Number Text",
+  "touhoulittlemaster.configuration.magicNumber": "Magic Number"
+}
