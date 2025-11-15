@@ -35,7 +35,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 @Mod(TouhouLittleMaster.MODID)
 public class TouhouLittleMaster {
     // Define mod id in a common place for everything to reference
-    public static final String MODID = "touhoulittlemaster";
+    public static final String MODID = "touhou_little_master";
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
 
