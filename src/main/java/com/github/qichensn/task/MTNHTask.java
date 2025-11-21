@@ -1,6 +1,7 @@
 package com.github.qichensn.task;
 
 import com.github.qichensn.TouhouLittleMaster;
+import com.github.qichensn.register.ItemRegister;
 import com.github.tartaricacid.touhoulittlemaid.api.task.IMaidTask;
 import com.github.tartaricacid.touhoulittlemaid.entity.passive.EntityMaid;
 import com.mojang.datafixers.util.Pair;
@@ -23,7 +24,7 @@ public class MTNHTask implements IMaidTask {
 
     @Override
     public @NotNull ItemStack getIcon() {
-        return null;
+        return ItemRegister.ID_CARD.toStack();
     }
 
     @Override
