@@ -1,5 +1,6 @@
 package com.github.qichensn;
 
+import com.github.qichensn.datagen.DataGenerator;
 import com.github.qichensn.register.ModRegister;
 import org.slf4j.Logger;
 
@@ -17,5 +18,6 @@ public class TouhouLittleMaster {
 
     public TouhouLittleMaster(IEventBus modEventBus, ModContainer modContainer) {
         ModRegister.register(modEventBus);
+        modEventBus.addListener(DataGenerator::onGatherData);
     }
 }
