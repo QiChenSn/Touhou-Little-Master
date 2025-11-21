@@ -1,0 +1,38 @@
+package com.github.qichensn.task;
+
+import com.github.qichensn.TouhouLittleMaster;
+import com.github.tartaricacid.touhoulittlemaid.api.task.IMaidTask;
+import com.github.tartaricacid.touhoulittlemaid.entity.passive.EntityMaid;
+import com.mojang.datafixers.util.Pair;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.entity.ai.behavior.BehaviorControl;
+import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+
+public class MTNHTask implements IMaidTask {
+    public static final ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(TouhouLittleMaster.MOD_ID,
+            "mtnh");
+    @Override
+    public @NotNull ResourceLocation getUid() {
+        return UID;
+    }
+
+    @Override
+    public @NotNull ItemStack getIcon() {
+        return null;
+    }
+
+    @Override
+    public @Nullable SoundEvent getAmbientSound(EntityMaid maid) {
+        return null;
+    }
+
+    @Override
+    public List<Pair<Integer, BehaviorControl<? super EntityMaid>>> createBrainTasks(EntityMaid maid) {
+        return List.of();
+    }
+}
