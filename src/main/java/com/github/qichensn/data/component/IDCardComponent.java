@@ -1,23 +1,25 @@
 package com.github.qichensn.data.component;
 
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 
 import java.util.Objects;
-import java.util.UUID;
 
 
 public class IDCardComponent {
     public String maidUUID;
-    public String beUUID;
+    public BlockPos bePos;
 
-    public IDCardComponent(String maidUUID, String beUUID) {
+    public IDCardComponent(String maidUUID, BlockPos bePos) {
         this.maidUUID = maidUUID;
-        this.beUUID = beUUID;
+        this.bePos = bePos;
+    }
+
+    public IDCardComponent() {
+        this.maidUUID = null;
+        this.bePos = null;
     }
 
     public String getMaidUUID() {
@@ -28,12 +30,12 @@ public class IDCardComponent {
         this.maidUUID = maidUUID;
     }
 
-    public String getBeUUID() {
-        return beUUID;
+    public BlockPos getBePos() {
+        return bePos;
     }
 
-    public void setBeUUID(String beUUID) {
-        this.beUUID = beUUID;
+    public void setBePos(BlockPos bePos) {
+        this.bePos = bePos;
     }
 
     @Override
@@ -44,17 +46,17 @@ public class IDCardComponent {
         IDCardComponent that = (IDCardComponent) o;
         
         if (!Objects.equals(maidUUID, that.maidUUID)) return false;
-        return Objects.equals(beUUID, that.beUUID);
+        return Objects.equals(bePos, that.bePos);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(maidUUID, beUUID);
+        return Objects.hash(maidUUID, bePos);
     }
 
     public static final StreamCodec<ByteBuf, IDCardComponent> STREAM_CODEC = StreamCodec.composite(
             ByteBufCodecs.STRING_UTF8, IDCardComponent::getMaidUUID,
-            ByteBufCodecs.STRING_UTF8, IDCardComponent::getBeUUID,
+            BlockPos.STREAM_CODEC, IDCardComponent::getBePos,
             IDCardComponent::new
     );
 

@@ -1,6 +1,7 @@
 package com.github.qichensn.register;
 
 import com.github.qichensn.TouhouLittleMaster;
+import com.github.qichensn.data.component.IDCardComponent;
 import com.github.qichensn.item.IDCardItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
@@ -14,5 +15,6 @@ public class ItemRegister {
             () -> new IDCardItem(new Item.Properties()
                     .stacksTo(1)
                     .rarity(Rarity.EPIC)
+                    .component(DataComponentRegister.ID_CARD_COMPONENT.value(),new IDCardComponent())
             ));
 }
