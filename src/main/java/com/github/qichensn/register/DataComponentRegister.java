@@ -14,6 +14,6 @@ public class DataComponentRegister {
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<IDCardComponent>> ID_CARD_COMPONENT =
             DATA_COMPONENTS.registerComponentType(
             "id_card",
-            builder -> builder.networkSynchronized(IDCardComponent.STREAM_CODEC)
+            builder -> builder.networkSynchronized(IDCardComponent.STREAM_CODEC).persistent(IDCardComponent.CODEC)
     );
 }
