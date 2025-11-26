@@ -62,7 +62,9 @@ public class IDCardItem extends Item {
         BlockEntity blockEntity = level.getBlockEntity(blockPos);
         if (blockEntity != null) {
             setBePos(context.getItemInHand(), blockPos);
-            player.displayClientMessage(Component.literal("成功绑定到方块实体!"+getBePos(context.getItemInHand())), true);
+            String pos = getBePos(context.getItemInHand()) == null ? "null" : getBePos(context.getItemInHand()).toShortString();
+            player.displayClientMessage(Component.translatable("message.id_card.bind_be",
+                    pos), true);
             return InteractionResult.SUCCESS;
         }
         return InteractionResult.FAIL;
@@ -71,9 +73,9 @@ public class IDCardItem extends Item {
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
-        String pos = getBePos(stack) == null ? "null" : getBePos(stack).toString();
+        String pos = getBePos(stack) == null ? "null" : getBePos(stack).toShortString();
         String uuid = getMaidUUID(stack) == null ? "null" : getMaidUUID(stack);
-        tooltipComponents.add(Component.translatable("tooltip.id_card_be",pos));
-        tooltipComponents.add(Component.translatable("tooltip.id_card_maid",uuid));
+        tooltipComponents.add(Component.translatable("tooltip.id_card.be",pos));
+        tooltipComponents.add(Component.translatable("tooltip.id_card.maid",uuid));
     }
 }

@@ -17,7 +17,8 @@ public class LangProvider extends LanguageProvider {
         add(ItemRegister.ID_CARD.get(),"工牌");
         add(String.format("task.%s.mtnh", MOD_ID), "MTNH");
         add(String.format("task.%s.mtnh.desc",MOD_ID),"使用工牌绑定女仆和机器");
-        add("tooltip.id_card_be","方块实体坐标: %s");
-        add("tooltip.id_card_maid","女仆UUID: %s");
+        add("tooltip.id_card.be","方块实体坐标: %s");
+        add("tooltip.id_card.maid","女仆UUID: %s");
+        add("message.id_card.bind_be","绑定至%s");
     }
 }
