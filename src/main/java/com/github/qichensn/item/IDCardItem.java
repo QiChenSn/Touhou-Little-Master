@@ -1,6 +1,9 @@
 package com.github.qichensn.item;
 
+import com.github.qichensn.TouhouLittleMaster;
 import com.github.qichensn.data.component.IDCardComponent;
+import com.github.tartaricacid.touhoulittlemaid.api.event.InteractMaidEvent;
+import com.github.tartaricacid.touhoulittlemaid.entity.passive.EntityMaid;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
@@ -11,12 +14,15 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 import static com.github.qichensn.register.DataComponentRegister.ID_CARD_COMPONENT;
 
+@EventBusSubscriber(modid = TouhouLittleMaster.MOD_ID)
 public class IDCardItem extends Item {
     public IDCardItem(Properties properties) {
         super(properties);
@@ -75,5 +81,19 @@ public class IDCardItem extends Item {
         String uuid = getMaidUUID(stack) == null ? "null" : getMaidUUID(stack);
         tooltipComponents.add(Component.translatable("tooltip.id_card.be",pos));
         tooltipComponents.add(Component.translatable("tooltip.id_card.maid",uuid));
+    }
+
+    @SubscribeEvent
+    public static void maidInteract(InteractMaidEvent event){
+        Level level = event.getWorld();
+        if(level.isClientSide()) return;
+        EntityMaid maid = event.getMaid();
+        ItemStack stack = event.getStack();
+        Player player = event.getPlayer();
+        if(!(stack.getItem() instanceof IDCardItem)) return;
+        setMaidUUID(stack,maid.getStringUUID());
+        player.displayClientMessage(Component.translatable("message.id_card.bind_maid",
+                maid.getStringUUID()), true);
+        event.setCanceled( true);
     }
 }

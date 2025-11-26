@@ -20,5 +20,6 @@ public class LangProvider extends LanguageProvider {
         add("tooltip.id_card.be","方块实体坐标: %s");
         add("tooltip.id_card.maid","女仆UUID: %s");
         add("message.id_card.bind_be","绑定至%s");
+        add("message.id_card.bind_maid","绑定至%s");
     }
 }
