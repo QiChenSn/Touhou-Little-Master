@@ -7,10 +7,13 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 import static com.github.qichensn.register.DataComponentRegister.ID_CARD_COMPONENT;
 
@@ -63,5 +66,14 @@ public class IDCardItem extends Item {
             return InteractionResult.SUCCESS;
         }
         return InteractionResult.FAIL;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+        String pos = getBePos(stack) == null ? "null" : getBePos(stack).toString();
+        String uuid = getMaidUUID(stack) == null ? "null" : getMaidUUID(stack);
+        tooltipComponents.add(Component.translatable("tooltip.id_card_be",pos));
+        tooltipComponents.add(Component.translatable("tooltip.id_card_maid",uuid));
     }
 }

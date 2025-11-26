@@ -1,5 +1,7 @@
 {
   "item.touhou_little_master.id_card": "工牌",
   "task.touhou_little_master.mtnh": "MTNH",
-  "task.touhou_little_master.mtnh.desc": "使用工牌绑定女仆和机器"
+  "task.touhou_little_master.mtnh.desc": "使用工牌绑定女仆和机器",
+  "tooltip.id_card_be": "方块实体坐标: %s",
+  "tooltip.id_card_maid": "女仆UUID: %s"
 }
