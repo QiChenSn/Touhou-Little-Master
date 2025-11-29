@@ -1,6 +1,7 @@
 package com.github.qichensn.task;
 
 import com.github.qichensn.TouhouLittleMaster;
+import com.github.qichensn.ai.brain.task.MTHNMoveToBETask;
 import com.github.qichensn.register.ItemRegister;
 import com.github.tartaricacid.touhoulittlemaid.api.task.IMaidTask;
 import com.github.tartaricacid.touhoulittlemaid.entity.passive.EntityMaid;
@@ -12,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MTNHTask implements IMaidTask {
@@ -34,6 +36,13 @@ public class MTNHTask implements IMaidTask {
 
     @Override
     public List<Pair<Integer, BehaviorControl<? super EntityMaid>>> createBrainTasks(EntityMaid maid) {
-        return List.of();
+        List<Pair<Integer, BehaviorControl<? super EntityMaid>>> tasks = new ArrayList<>();
+        tasks.add(Pair.of(100, new MTHNMoveToBETask(1.0f, 3)));
+        return tasks;
+    }
+
+    @Override
+    public boolean enableLookAndRandomWalk(EntityMaid maid) {
+        return false;
     }
 }

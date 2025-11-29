@@ -28,26 +28,26 @@ public class IDCardItem extends Item {
         super(properties);
     }
 
-    private static void setMaidUUID(ItemStack stack, String uuid){
+    public static void setMaidUUID(ItemStack stack, String uuid){
         IDCardComponent component = stack.get(ID_CARD_COMPONENT);
         if (component != null) {
             stack.set(ID_CARD_COMPONENT, new IDCardComponent(uuid, component.bePos()));
         }
     }
-    private static void setBePos(ItemStack stack, BlockPos pos){
+    public static void setBePos(ItemStack stack, BlockPos pos){
         IDCardComponent component = stack.get(ID_CARD_COMPONENT);
         if (component != null) {
             stack.set(ID_CARD_COMPONENT, new IDCardComponent(component.maidUUID(), pos));
         }
     }
-    private static String getMaidUUID(ItemStack stack){
+    public static String getMaidUUID(ItemStack stack){
         IDCardComponent component = stack.get(ID_CARD_COMPONENT);
         if (component != null) {
             return component.maidUUID();
         }
         return null;
     }
-    private static BlockPos getBePos(ItemStack stack){
+    public static BlockPos getBePos(ItemStack stack){
         IDCardComponent component = stack.get(ID_CARD_COMPONENT);
         if (component != null) {
             return component.bePos();
