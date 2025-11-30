@@ -13,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MTNHTask implements IMaidTask {
@@ -35,7 +36,9 @@ public class MTNHTask implements IMaidTask {
 
     @Override
     public List<Pair<Integer, BehaviorControl<? super EntityMaid>>> createBrainTasks(EntityMaid maid) {
-        return List.of(Pair.of(10,new MtnhTask()));
+        List<Pair<Integer, BehaviorControl<? super EntityMaid>>> tasks = new ArrayList<>();
+        tasks.add(Pair.of(10,new MtnhTask()));
+        return tasks;
     }
 
     @Override

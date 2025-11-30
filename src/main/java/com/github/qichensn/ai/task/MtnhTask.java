@@ -37,7 +37,7 @@ public class MtnhTask extends Behavior<EntityMaid> {
     protected void tick(@NotNull ServerLevel level, EntityMaid maid, long gameTime) {
         BlockPos pos = maid.getOrCreateData(TaskDataRegister.BIND_BE_POS, BlockPos.ZERO);
         // 检查女仆位置
-        if(!maid.isAlive() || maid.distanceToSqr(pos.getX(),pos.getY(),pos.getZ()) > 1){
+        if(!maid.isAlive() || maid.distanceToSqr(pos.getX(),pos.getY(),pos.getZ()) > 3.0d){
             return;
         }
         // 检查庭灯
@@ -103,7 +103,6 @@ public class MtnhTask extends Behavior<EntityMaid> {
         for (int i = 0; i < times; i++) {
             if (be.isRemoved()) break; // 防止方块实体已被移除
             ticker.tick(level, pos, state, be);
-            TouhouLittleMaster.LOGGER.info("加速了{}",pos);
         }
 
         // 添加粒子效果显示加速发生

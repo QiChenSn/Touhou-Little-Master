@@ -125,5 +125,9 @@ public class IDCardItem extends Item {
         // TODO: 不知道为什么，传送位置太远的时候，女仆会自动传送回去
         maid.teleportTo(above.getCenter().x, above.getCenter().y, above.getCenter().z);
         maid.setData(TaskDataRegister.BIND_BE_POS,pos);
+        // 女仆相关配置
+        maid.setHomeModeEnable(true); // 启用Home模式
+        maid.setPickup(false); // 关闭拾物模式
+        maid.setRideable(false); // 关闭骑乘模式
     }
 }
