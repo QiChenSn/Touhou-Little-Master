@@ -2,10 +2,15 @@ package com.github.qichensn.item;
 
 import com.github.qichensn.TouhouLittleMaster;
 import com.github.qichensn.data.component.IDCardComponent;
+import com.github.qichensn.register.TaskDataRegister;
+import com.github.qichensn.task.MTNHTask;
 import com.github.tartaricacid.touhoulittlemaid.api.event.InteractMaidEvent;
+import com.github.tartaricacid.touhoulittlemaid.api.task.IMaidTask;
 import com.github.tartaricacid.touhoulittlemaid.entity.passive.EntityMaid;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -91,9 +96,34 @@ public class IDCardItem extends Item {
         ItemStack stack = event.getStack();
         Player player = event.getPlayer();
         if(!(stack.getItem() instanceof IDCardItem)) return;
+        bindAndSendMaidToWork((ServerLevel) level, stack, maid, (ServerPlayer) player);
+        event.setCanceled( true);
+    }
+
+    public static void bindAndSendMaidToWork(ServerLevel level, ItemStack stack, EntityMaid maid, ServerPlayer player){
+        // 检查工作模式
+        IMaidTask task = maid.getTask();
+        if(!(task instanceof MTNHTask)){
+            player.displayClientMessage(Component.translatable("message.id_card.task_not_mtnh"), true);
+            return;
+        }
+        // 检查工作方块上方两格是否为空
+        BlockPos pos = getBePos(stack);
+        if(pos == null){
+            player.displayClientMessage(Component.translatable("message.id_card.be_null"), true);
+            return;
+        }
+        if(!level.getBlockState(pos.above()).isAir() || !level.getBlockState(pos.above(2)).isAir()){
+            player.displayClientMessage(Component.translatable("message.id_card.be_not_empty"), true);
+            return;
+        }
         setMaidUUID(stack,maid.getStringUUID());
         player.displayClientMessage(Component.translatable("message.id_card.bind_maid",
                 maid.getStringUUID()), true);
-        event.setCanceled( true);
+        // 传送女仆
+        BlockPos above = pos.above(1);
+        // TODO: 不知道为什么，传送位置太远的时候，女仆会自动传送回去
+        maid.teleportTo(above.getCenter().x, above.getCenter().y, above.getCenter().z);
+        maid.setData(TaskDataRegister.BIND_BE_POS,pos);
     }
 }

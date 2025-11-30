@@ -36,4 +36,14 @@ public class MTNHTask implements IMaidTask {
     public List<Pair<Integer, BehaviorControl<? super EntityMaid>>> createBrainTasks(EntityMaid maid) {
         return List.of();
     }
+
+    @Override
+    public boolean enableLookAndRandomWalk(EntityMaid maid) {
+        return false;
+    }
+
+    @Override
+    public boolean enablePanic(EntityMaid maid) {
+        return false;
+    }
 }

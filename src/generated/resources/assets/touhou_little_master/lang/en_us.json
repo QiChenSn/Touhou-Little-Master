@@ -1,7 +1,10 @@
 {
   "item.touhou_little_master.id_card": "工牌",
+  "message.id_card.be_not_empty": "工作方块上方可用空间不足",
+  "message.id_card.be_null": "未绑定工作方块",
   "message.id_card.bind_be": "绑定至%s",
   "message.id_card.bind_maid": "绑定至%s",
+  "message.id_card.task_not_mtnh": "请先将女仆切换为MTHN模式",
   "task.touhou_little_master.mtnh": "MTNH",
   "task.touhou_little_master.mtnh.desc": "使用工牌绑定女仆和机器",
   "tooltip.id_card.be": "方块实体坐标: %s",
