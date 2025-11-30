@@ -1,6 +1,7 @@
 package com.github.qichensn.task;
 
 import com.github.qichensn.TouhouLittleMaster;
+import com.github.qichensn.ai.task.MtnhTask;
 import com.github.qichensn.register.ItemRegister;
 import com.github.tartaricacid.touhoulittlemaid.api.task.IMaidTask;
 import com.github.tartaricacid.touhoulittlemaid.entity.passive.EntityMaid;
@@ -34,7 +35,7 @@ public class MTNHTask implements IMaidTask {
 
     @Override
     public List<Pair<Integer, BehaviorControl<? super EntityMaid>>> createBrainTasks(EntityMaid maid) {
-        return List.of();
+        return List.of(Pair.of(10,new MtnhTask()));
     }
 
     @Override
